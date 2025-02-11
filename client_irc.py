@@ -3,8 +3,9 @@ import threading
 import os
 
 # Server configuration
-HOST = os.getenv('IRC_HOST', '127.0.0.1')  # Ensure this matches the server's HOST
-PORT = int(os.getenv('IRC_PORT', 6667))    # Ensure this matches the server's PORT
+HOST = os.getenv('IRC_HOST')  # Ensure this matches the server's HOST
+PORT = int(os.getenv('IRC_PORT'))  # Ensure this matches the server's PORT
+
 
 def receive_messages(client_socket):
     """Receive and display messages from the server."""
@@ -18,6 +19,7 @@ def receive_messages(client_socket):
             print(f"Error receiving message: {e}")
             break
 
+
 def start_client():
     """Start the IRC client."""
     try:
@@ -27,7 +29,8 @@ def start_client():
         print("Connected to the server!")
 
         # Start a thread to receive messages
-        threading.Thread(target=receive_messages, args=(client_socket,)).start()
+        threading.Thread(target=receive_messages,
+                         args=(client_socket,)).start()
 
         # Send commands to the server
         while True:
@@ -41,6 +44,7 @@ def start_client():
     finally:
         client_socket.close()
         print("Connection closed.")
+
 
 if __name__ == '__main__':
     start_client()
