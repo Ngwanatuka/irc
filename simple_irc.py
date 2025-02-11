@@ -3,8 +3,8 @@ import threading
 import os
 
 # Server configuration
-HOST = os.getenv('IRC_HOST')
-PORT = int(os.getenv('IRC_PORT'))
+HOST = os.getenv('IRC_HOST', '121.0.0.1')
+PORT = int(os.getenv('IRC_PORT', 6667))
 
 # Store connected clients and channels
 clients = {}
