@@ -1,9 +1,10 @@
 import socket
 import threading
+import os
 
 # Server configuration
-HOST = '127.0.0.1'  # Ensure this matches the server's HOST
-PORT = 6667         # Ensure this matches the server's PORT
+HOST = os.getenv('IRC_HOST', '127.0.0.1')  # Ensure this matches the server's HOST
+PORT = int(os.getenv('IRC_PORT', 6667))    # Ensure this matches the server's PORT
 
 def receive_messages(client_socket):
     """Receive and display messages from the server."""
